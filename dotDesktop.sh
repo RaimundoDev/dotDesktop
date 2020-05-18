@@ -11,23 +11,33 @@
 APPLICATIONSPATH="$HOME/.local/share/applications/"
 MYDESKTOPFILE="dotDesktop.desktop"
 
-#MYDESKTOPFILE="dotDesktop.desktop"
-
 # Own desktop file verification
 
-# if [ -f "$APPLICATIONSPATH$MYDESKTOPFILE" ] 
-# then 
-#     echo "Everything is alright!"
-# else 
-#     zenity --question --title="dotDesktop" --text="There is no .desktop file to this application, want create one?"
+function firstRun() {
+    if [ -f "$APPLICATIONSPATH$MYDESKTOPFILE" ] 
+    then 
+        echo "Everything is alright!"   
+    else 
+        zenity --question --title="dotDesktop" --text="There is no .desktop file to this application, want create one?"
 
-#     echo $?
+        echo $?
 
-#     if [ "$?" = "0" ]
-#     then
-#         cp $MYDESKTOPFILE $APPLICATIONSPATH
-#     fi
-# fi
+        if [ "$?" = "0" ]
+        then
+            NAME="dotDesktop"
+            VERSION="1.0"
+            COMMENT="A .desktop file creator"
+            TYPE="Application"
+            FILEPATH=$(readlink -f dotDesktop.sh)
+            ICON=$(readlink -f icon.png)
+            CATEGORIES="System;Utility;"
+
+            APPLICATIONDESKTOP="$APPLICATIONSPATH$MYDESKTOPFILE"
+
+            createFile
+        fi
+    fi
+}
 
 function getInfo() {
 
@@ -63,26 +73,11 @@ function createFile() {
 
             if [ "$?" = "0" ]
             then
-                rm -rf $APPLICATIONDESKTOP
-
-                touch $APPLICATIONDESKTOP
-
-                echo "[Desktop Entry]" >> $APPLICATIONDESKTOP
-                echo "" >> $APPLICATIONDESKTOP
-                echo "Name=$NAME" >> $APPLICATIONDESKTOP
-                echo "Version=$VERSION" >> $APPLICATIONDESKTOP
-                echo "Comment='$COMMENT'" >> $APPLICATIONDESKTOP
-                echo "Type=$TYPE" >> $APPLICATIONDESKTOP
-                echo "Exec='$FILEPATH'" >> $APPLICATIONDESKTOP
-                echo "Icon=$ICON" >> $APPLICATIONDESKTOP
-                echo "Categories=$CATEGORIES;" >> $APPLICATIONDESKTOP
-            
+                rm -rf $APPLICATIONDESKTOP       
             else
                 zenity --info --text="File Creation canceled!"
             fi
         else
-                rm -rf $APPLICATIONDESKTOP
-
                 touch $APPLICATIONDESKTOP
 
                 echo "[Desktop Entry]" >> $APPLICATIONDESKTOP
@@ -99,4 +94,5 @@ function createFile() {
         fi
 }
 
+firstRun
 getInfo
