@@ -56,11 +56,12 @@ function getInfo() {
 }
 
 function createFile() {
-        if [ -f $APPLICATIONDESKTOP ]
-    then
-        zenity --question --title="Overwrite" --text="File already exist, overwrite?"
 
-        if [ "$?" = "0" ]
+        if [ -f "$APPLICATIONDESKTOP" ]
+        then
+            zenity --question --title="Overwrite" --text="File already exist, overwrite?"
+
+            if [ "$?" = "0" ]
             then
                 rm -rf $APPLICATIONDESKTOP
 
@@ -77,8 +78,24 @@ function createFile() {
                 echo "Categories=$CATEGORIES;" >> $APPLICATIONDESKTOP
             
             else
-                zenity --info --text="Creating canceled!"
+                zenity --info --text="File Creation canceled!"
             fi
+        else
+                rm -rf $APPLICATIONDESKTOP
+
+                touch $APPLICATIONDESKTOP
+
+                echo "[Desktop Entry]" >> $APPLICATIONDESKTOP
+                echo "" >> $APPLICATIONDESKTOP
+                echo "Name=$NAME" >> $APPLICATIONDESKTOP
+                echo "Version=$VERSION" >> $APPLICATIONDESKTOP
+                echo "Comment='$COMMENT'" >> $APPLICATIONDESKTOP
+                echo "Type=$TYPE" >> $APPLICATIONDESKTOP
+                echo "Exec='$FILEPATH'" >> $APPLICATIONDESKTOP
+                echo "Icon=$ICON" >> $APPLICATIONDESKTOP
+                echo "Categories=$CATEGORIES;" >> $APPLICATIONDESKTOP
+
+                zenity --info --text=".Desktop file created!"
         fi
 }
 
