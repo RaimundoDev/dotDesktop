@@ -13,7 +13,7 @@ This bash file is a easy solution for this, just bash and zenity for we can crea
     - Version
     - Icon
     - Comment
-    - Exec (There is no path for now)
+    - Exec
     - Categories
 
 > Desktop files are save in: ~/.local/share/applications/
@@ -24,7 +24,7 @@ This bash file is a easy solution for this, just bash and zenity for we can crea
 
 - [X] Create cool .desktop files
 - [ ] Support all [freedesktop specification](https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#recognized-keys "Desktop entry specifications")
-- [ ] Create a application menu
+- [X] Create a application menu
 - [ ] Create a config file
 - [ ] Support for links
 - [ ] Support for backup and export of the created desktop files

@@ -3,7 +3,7 @@
 #===================================================
 # Bash script for .desktop Creation
 # Author: Raimundo Nonato
-# version: 1.0
+# version: 1.3
 #===================================================
 
 #Own desktop file configuration
@@ -25,18 +25,33 @@ function firstRun() {
         if [ "$?" = "0" ]
         then
             NAME="dotDesktop"
-            VERSION="1.0"
+            VERSION="1.3"
             COMMENT="A .desktop file creator"
             TYPE="Application"
-            FILEPATH=$(readlink -f dotDesktop.sh)
-            ICON=$(readlink -f icon.png)
-            CATEGORIES="System;Utility;"
+            FILEPATH=$(realpath -e dotDesktop.sh)
+            ICON=$(realpath -e icon.png)
+            CATEGORIES="System;Utility"
 
             APPLICATIONDESKTOP="$APPLICATIONSPATH$MYDESKTOPFILE"
 
             createFile
         fi
     fi
+}
+
+function menu() {
+    CHOICE=$(zenity --list --window-icon=question --title="dotDesktop Menu" --text="Welcome to dotDesktop\nWhat you want do?" --column="Action" "Create" "exit")
+
+    if [ "$CHOICE" = "Create" ]
+    then
+        getInfo
+    elif [ "$?" = "1" ] 
+    then
+        exit
+    else
+        exit
+    fi
+
 }
 
 function getInfo() {
@@ -76,6 +91,8 @@ function createFile() {
                 rm -rf $APPLICATIONDESKTOP       
             else
                 zenity --info --text="File Creation canceled!"
+
+                menu
             fi
         else
                 touch $APPLICATIONDESKTOP
@@ -91,8 +108,10 @@ function createFile() {
                 echo "Categories=$CATEGORIES;" >> $APPLICATIONDESKTOP
 
                 zenity --info --text=".Desktop file created!"
+
+                menu
         fi
 }
 
 firstRun
-getInfo
+menu
