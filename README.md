@@ -7,16 +7,16 @@ This bash file is a easy solution for this, just bash and zenity for we can crea
 
 ## Version 1.0
 
-    - Create .desktop file (Application/Directory type only) with the options bellow:
-        - Name (Obligatory)
-        - Type (Obligatory)
-        - Version
-        - Icon
-        - Comment
-        - Exec (There is no path for now)
-        - Categories
+- Create .desktop file (Application/Directory type only) with the options bellow:
+    - Name (Obligatory)
+    - Type (Obligatory)
+    - Version
+    - Icon
+    - Comment
+    - Exec (There is no path for now)
+    - Categories
 
-    > Desktop files are save in: ~/.local/share/applications/
+> Desktop files are save in: ~/.local/share/applications/
 
 ## To-Do List
 
