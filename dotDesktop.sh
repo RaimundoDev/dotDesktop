@@ -3,7 +3,7 @@
 #===================================================
 # Bash script for dotDesktop menu
 # Author: Raimundo Nonato
-# version: 1.3
+# version: 1.0.4
 #===================================================
 
 source fileCreator.sh

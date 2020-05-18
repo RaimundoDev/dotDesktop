@@ -3,7 +3,7 @@
 #===================================================
 # Bash script for .desktop Creation
 # Author: Raimundo Nonato
-# version: 1.3
+# version: 1.0.4
 #===================================================
 
 #Own desktop file configuration
@@ -29,7 +29,7 @@ function firstRun() {
             COMMENT="A .desktop file creator"
             TYPE="Application"
             FILEPATH=$(realpath -e dotDesktop.sh)
-            ICON=$(realpath -e icon.png)
+            ICON=$(realpath -e ./Assets/icon.png)
             CATEGORIES="System;Utility"
 
             APPLICATIONDESKTOP="$APPLICATIONSPATH$MYDESKTOPFILE"
