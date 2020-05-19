@@ -77,7 +77,7 @@ function createFile() {
             else
                 zenity --info --text="File Creation canceled!"
 
-                menu
+                ./dotDesktop.sh
             fi
         else
                 touch $APPLICATIONDESKTOP
@@ -94,6 +94,6 @@ function createFile() {
 
                 zenity --info --text=".Desktop file created!"
 
-                menu
+                ./dotDesktop.sh
         fi
 }

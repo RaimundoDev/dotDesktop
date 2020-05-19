@@ -1,7 +1,7 @@
 # dotDesktop
 ##  .desktop file creator with bash and zenity
 
-Create desktop files is not a dificult task, but we can see a bunch of applications here and there with time, e everytime creating a new file can be a little boring.
+Create desktop files is not a dificult task, but we can see a bunch of applications here and there without .desktop files, and everytime creating a new file can be a little boring.
 
 This bash file is a easy solution for this, just bash and zenity for we can create in just seconds a desktop file.
 
